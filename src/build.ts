@@ -11,14 +11,14 @@ export function buildProject(callback: () => void) {
 export function buildEngine(callback: () => void) {
 
     let projectPath = process.cwd();//返回运行当前脚本的工作目录的路径
-    let configFile = path.join(projectPath, "engine.json");//engine-test-game文件中
+    let configFile = path.join(projectPath, "angel.json");//angel-test-game文件中
     let config = fs.readJSONSync(configFile);
     let enginePath = config.engine;
 
     executeCommand("tsc", ["-p", enginePath], () => {
-        //找到运行该项目的父目录目录的engine文件夹,将engine中的out文件夹内容复制到运行该项目的engine文件夹中
+        //找到运行该项目的父目录目录的angel文件夹,将angel中的out文件夹内容复制到运行该项目的angel文件夹中
         let source = path.join(enginePath, "out");
-        let target = path.join(projectPath, 'engine');
+        let target = path.join(projectPath, 'angel');
         fs.copy(source, target, callback);
     });
 }

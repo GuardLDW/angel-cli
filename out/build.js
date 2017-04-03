@@ -10,13 +10,13 @@ function buildProject(callback) {
 exports.buildProject = buildProject;
 function buildEngine(callback) {
     var projectPath = process.cwd(); //返回运行当前脚本的工作目录的路径
-    var configFile = path.join(projectPath, "engine.json"); //engine-test-game文件中
+    var configFile = path.join(projectPath, "angel.json"); //engine-test-game文件中
     var config = fs.readJSONSync(configFile);
     var enginePath = config.engine;
     executeCommand("tsc", ["-p", enginePath], function () {
         //找到运行该项目的父目录目录的engine文件夹,将engine中的out文件夹内容复制到运行该项目的engine文件夹中
         var source = path.join(enginePath, "out");
-        var target = path.join(projectPath, 'engine');
+        var target = path.join(projectPath, 'angel');
         fs.copy(source, target, callback);
     });
 }
